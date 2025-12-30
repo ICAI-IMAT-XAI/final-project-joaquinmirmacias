@@ -1,0 +1,7 @@
+# Datasets
+dataset_100/
+raw_data/
+
+# Model weights
+*.pth
+model/

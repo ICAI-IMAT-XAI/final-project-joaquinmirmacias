@@ -1,0 +1,9 @@
+torch
+torchvision
+scikit-learn
+pandas
+Pillow>=9.0.1
+tqdm>=4.63.0
+joblib
+grad-cam
+transformers
