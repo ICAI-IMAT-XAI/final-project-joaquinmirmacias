@@ -95,12 +95,12 @@ The fine-tuned ViT achieved robust performance on the validation split, demonstr
 </div>
 
 * **Observation:**
-    * **Visual (Heatmaps):** The **Grad-CAM** (left) shows a broad area of interest covering the main subject. However, the **Grad-CAM++** (right) provides much finer granularity, specifically highlighting high-frequency areas such as the **eyes or complex background textures**.
+    * **Visual (Heatmaps):** The **Grad-CAM** (left) shows a broad area of interest covering the main subject. However, the **Grad-CAM++** (right) provides much finer granularity, specifically highlighting high-frequency areas such as **complex background textures**.
     * **Textual (VQA):** The **BLIP** model perceives the image as a "Realistic Photo" and "Modern," indicating that the generative quality is high enough to fool a semantic description model.
 
 * **Interpretation:**
-    * **Model Robustness:** Despite the image appearing "Realistic" to the VQA model (and likely to the human eye), the **ViT classifier correctly identified it as Synthetic**. The heatmaps reveal that the model is not looking at the general "scene" (like the VQA) but is instead focusing on specific **generative artifacts** structural inconsistencies often found in eyes or extremities that are imperceptible at a glance but mathematically distinct to the Transformer.
-    * **Technique Comparison:** This case demonstrates the superiority of **Grad-CAM++** over standard Grad-CAM for forensic tasks. Its ability to separate multiple focal points allows the stakeholder to pinpoint exactly *which* part of the image  triggered the "Fake" flag.
+    * **Model Robustness:** Despite the image appearing "Realistic" to the VQA model (and likely to the human eye), the **ViT classifier correctly identified it as Synthetic**. The heatmaps reveal that the model is not looking at the general "scene" (like the VQA) but is instead focusing on specific **generative artifacts**—structural inconsistencies often found in eyes or extremities that are imperceptible at a glance but mathematically distinct to the Transformer.
+    * **Technique Comparison:** This case demonstrates the superiority of **Grad-CAM++** over standard Grad-CAM for forensic tasks. Its ability to separate multiple focal points allows the stakeholder to pinpoint exactly *which* part of the image triggered the "Fake" flag.
 
 #### Case 2: Synthetic Wildlife (Surreal Context)
 <p align="center">
@@ -119,12 +119,12 @@ The fine-tuned ViT achieved robust performance on the validation split, demonstr
 </div>
 
 * **Observation:**
-    * **Visual (Heatmaps):** The **Grad-CAM** (left) provides a coarse activation over the penguin's body. **Grad-CAM++** (right) offers superior localization, specifically highlighting the **facial features (beak/eyes)** and the high-frequency **texture of the plumage/feathers**.
-    * **Textual (VQA):** The **BLIP** model identifies the content as a "Photo" but explicitly flags it as **not realistic**, suggesting the presence of surreal elements or artificial rendering.
+    * **Visual (Heatmaps):** The **Grad-CAM** (left) provides an activation focused mainly on background landscape patterns and textures, and on some features of the penguin such as the eye. **Grad-CAM++** (right) offers a localization very similar to Grad-CAM, highlighting **facial features (beak/eyes)**, the **plumage texture**, and **background landscape textures**.
+    * **Textual (VQA):** The **BLIP** model identifies the content as a "Photo" but explicitly marks it as **not realistic**, suggesting the presence of surreal elements or artificial rendering.
 
 * **Interpretation:**
-    * **Detection Logic:** The model correctly identifies this image as **Fake**. Unlike human portraits where hands are the giveaway, in AI-generated wildlife, the model attends to **unnatural smoothness** or the "plastic sheen" often found in synthetic fur and feathers.
-    * **Multimodal Validation:** The visual classifier focuses on the texture artifacts (as shown in the heatmap), while the VQA model independently confirms the lack of realism. This cross-validation allows the stakeholder to confidently reject the image as a generated deepfake rather than a real photograph.
+    * **Detection Logic:** The model correctly identifies this image as **Fake**. Unlike human portraits where hands are the giveaway, in AI-generated wildlife, the model attends to **unnatural smoothness** or unnatural sheen often found in synthetic fur and feathers.
+    * **Multimodal Validation:** The visual classifier focuses on texture artifacts (as shown in the heatmap), while the VQA model independently confirms the lack of realism. This cross-validation allows the stakeholder to confidently reject the image as a generated deepfake rather than a real photograph.
 
 #### Case 3: Synthetic Landscape (Stylized/Fantasy)
 <p align="center">
